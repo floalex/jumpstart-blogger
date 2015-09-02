@@ -21,4 +21,7 @@
 <h3>Comments (<%= @article.comments.size %>)</h3>
 <%= render partial: 'articles/comment', collection: @article.comments %>
 
+</br>
+<em> viewed: <%= @article.view_count %> times </em>
+
 

@@ -18,4 +18,9 @@ class Article < ActiveRecord::Base
     new_or_found_tags = tag_names.collect{ |name| Tag.find_or_create_by(name: name) }
     self.tags = new_or_found_tags
   end
+  
+  #Track the number of times an article has been viewed
+  def view_count
+    Article.increment_counter(:views, self.id)
+  end
 end
