@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  include ArticlesHelper
+  before_action :require_login, except: [:index, :show]
   
   def index
     @articles = Article.all
@@ -46,4 +46,8 @@ class ArticlesController < ApplicationController
   def article_params
     params.require(:article).permit(:title, :body, :tag_list, :image)
   end
+  
+  def require_login
+      redirect_to login_path unless current_user 
+    end
 end
