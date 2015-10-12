@@ -2,7 +2,8 @@ class ArticlesController < ApplicationController
   before_action :require_login, except: [:index, :show]
   
   def index
-    @articles = Article.all
+    @articles, @tag = Article.search_by_tag_name(params[:tag])
+    @pages = Page.all
   end
   
   def show
